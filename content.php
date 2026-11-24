@@ -2,7 +2,29 @@
 require_once __DIR__ . '/functions.php';
 $siteContent = $siteContent ?? loadSiteContent();
 $pageIcons = ['releases' => 'lp', 'events' => 'calendar', 'event' => 'calendar', 'about' => 'about', 'contact' => 'person', 'links' => 'world', 'updates' => 'github'];
-$updates = $pagePath === 'updates' ? loadUpdates() : [];
+$updates = [];
+$updatesUnavailable = false;
+if ($pagePath === 'updates') {
+    try {
+        $updates = loadUpdates();
+    } catch (RuntimeException | JsonException $error) {
+        error_log('Updates: ' . $error->getMessage());
+        http_response_code(503);
+        $updatesUnavailable = true;
+    }
+
+    $requestedPage = filter_var($_GET['page'] ?? 1, FILTER_VALIDATE_INT);
+    if ($requestedPage === false) {
+        http_response_code(400);
+        $requestedPage = 1;
+        $updatesUnavailable = true;
+    }
+    $updatesPerPage = 25;
+    $totalUpdates = count($updates);
+    $updatesPageCount = max(1, (int) ceil($totalUpdates / $updatesPerPage));
+    $updatesPage = min($updatesPageCount, max(1, $requestedPage));
+    $pageUpdates = array_slice($updates, ($updatesPage - 1) * $updatesPerPage, $updatesPerPage);
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -134,17 +156,33 @@ $updates = $pagePath === 'updates' ? loadUpdates() : [];
           <ul class="plain-list"><?php foreach ($siteContent['links'] as $link): ?><li><a href="<?php echo escapeHtml($link['url']); ?>"><?php echo escapeHtml($link['name']); ?> <svg class="external-link-icon" aria-hidden="true" focusable="false"><use href="/icons.svg#external"></use></svg></a></li><?php endforeach; ?></ul>
         </section>
       <?php elseif ($pagePath === 'updates'): ?>
-        <section class="content-panel">
-          <?php if ($updates === []): ?>
-            <p>No updates available</p>
-          <?php else: ?>
-            <ul class="plain-list">
-              <?php foreach ($updates as $update): ?>
-                <li><a href="<?php echo escapeHtml($siteContent['github'] . '/commit/' . $update['head_sha']); ?>"><?php echo escapeHtml($update['display_title']); ?> <svg class="external-link-icon" aria-hidden="true" focusable="false"><use href="/icons.svg#external"></use></svg></a> <time datetime="<?php echo escapeHtml($update['created_at']); ?>"><?php echo escapeHtml(gmdate('d-m-Y', strtotime($update['created_at']))); ?></time></li>
-              <?php endforeach; ?>
-            </ul>
-          <?php endif; ?>
-          <p><a href="<?php echo escapeHtml($siteContent['github']); ?>">View the repository on GitHub <svg class="external-link-icon" aria-hidden="true" focusable="false"><use href="/icons.svg#external"></use></svg></a></p>
+        <section class="content-panel updates">
+          <nav class="updates-pagination" aria-label="Updates pagination">
+            <a href="/updates?page=<?php echo $updatesPage === 1 ? $updatesPageCount : $updatesPage - 1; ?>" aria-label="Previous updates" title="Show previous updates"><svg class="icons" aria-hidden="true"><use href="/icons.svg#arrow_left"></use></svg></a>
+            <span>Page <?php echo $updatesPage; ?> of <?php echo $updatesPageCount; ?></span>
+            <a href="/updates?page=<?php echo $updatesPage === $updatesPageCount ? 1 : $updatesPage + 1; ?>" aria-label="Next updates" title="Show next updates"><svg class="icons" aria-hidden="true"><use href="/icons.svg#arrow_right"></use></svg></a>
+          </nav>
+          <div class="updates-scroll">
+            <table>
+              <thead><tr><th scope="col">Title</th><th scope="col">Date</th><th scope="col">Number</th><th scope="col">Commit</th></tr></thead>
+              <tbody>
+              <?php if ($updatesUnavailable): ?>
+                <tr><td colspan="4">Updates unavailable</td></tr>
+              <?php elseif ($pageUpdates === []): ?>
+                <tr><td colspan="4">No updates available</td></tr>
+              <?php else: ?>
+                <?php foreach ($pageUpdates as $index => $update): ?>
+                  <tr>
+                    <td><a href="<?php echo escapeHtml($siteContent['github'] . '/commit/' . $update['head_sha']); ?>" target="_blank" rel="noopener noreferrer"><?php echo escapeHtml($update['display_title']); ?></a></td>
+                    <td><time datetime="<?php echo escapeHtml($update['created_at']); ?>"><?php echo escapeHtml(gmdate('d-m-Y H:i', strtotime($update['created_at']))); ?> UTC</time></td>
+                    <td><?php echo $totalUpdates - ($updatesPage - 1) * $updatesPerPage - $index; ?></td>
+                    <td><?php echo escapeHtml(substr($update['head_sha'], 0, 7)); ?></td>
+                  </tr>
+                <?php endforeach; ?>
+              <?php endif; ?>
+              </tbody>
+            </table>
+          </div>
         </section>
       <?php endif; ?>
     <?php endif; ?>

@@ -179,10 +179,18 @@ if (($argv[1] ?? '') === '--http') {
     foreach ($siteContent['links'] as $link) {
         check(str_contains($page, 'href="' . escapeHtml($link['url']) . '">' . escapeHtml($link['name']) . ' <svg class="external-link-icon"'), 'Mark each external polar resource link');
     }
-    [, $page] = response('/updates');
-    check(str_contains($page, 'No updates available') && str_contains($page, 'href="' . escapeHtml($siteContent['github']) . '">View the repository on GitHub <svg class="external-link-icon"'), 'Show the empty update feed and mark the external repository link');
+    [$status, $page] = response('/updates');
+    check($status === 200 && str_contains($page, 'aria-label="Updates pagination"') && str_contains($page, 'Page 1 of 1')
+        && str_contains($page, '<th scope="col">Title</th><th scope="col">Date</th><th scope="col">Number</th><th scope="col">Commit</th>')
+        && !str_contains($page, 'data-label=') && str_contains($page, 'No updates available'),
+        'Render the paginated empty updates table');
+    $updatesCss = file_get_contents(__DIR__ . '/../updates.css');
+    check($updatesCss !== false && !str_contains($updatesCss, '@container') && !str_contains($updatesCss, 'display: grid'),
+        'Keep the Updates table native on narrow screens');
+    [$status, $page] = response('/updates?page=invalid');
+    check($status === 400 && str_contains($page, 'Updates unavailable'), 'Reject invalid update page values');
 
-    foreach (['/favicon.svg', '/style.css', '/index.js', '/swipe.js', '/img/arctica_antarctica.svg', '/img/focus_studios.svg', '/img/band.png', '/img/social_preview.png', '/icons.svg'] as $path) {
+    foreach (['/favicon.svg', '/style.css', '/updates.css', '/index.js', '/swipe.js', '/img/arctica_antarctica.svg', '/img/focus_studios.svg', '/img/band.png', '/img/social_preview.png', '/icons.svg'] as $path) {
         check(response($path)[0] === 200, "Serve asset $path");
     }
     foreach (['/data/site.json', '/functions.php', '/head.php', '/toc.php', '/footer.php', '/content.php', '/tests/site.php', '/missing-page'] as $path) {

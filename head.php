@@ -7,10 +7,12 @@ $description = escapeHtml($siteContent['description']);
 ?>
 <title><?php echo $pageTitle; ?></title>
 <meta charset="utf-8">
+<script src="/resize_table.js?v=<?php echo filemtime(__DIR__ . '/resize_table.js'); ?>" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="<?php echo $description; ?>">
 <link rel="icon" href="/favicon.svg?v=<?php echo filemtime(__DIR__ . '/favicon.svg'); ?>" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css?v=<?php echo filemtime(__DIR__ . '/style.css'); ?>">
+<?php if ($pagePath === 'updates'): ?><link rel="stylesheet" href="/updates.css?v=<?php echo filemtime(__DIR__ . '/updates.css'); ?>"><?php endif; ?>
 <script src="/index.js?v=<?php echo filemtime(__DIR__ . '/index.js'); ?>" defer></script>
 <script src="/swipe.js?v=<?php echo filemtime(__DIR__ . '/swipe.js'); ?>" defer></script>
 <meta property="og:title" content="<?php echo $pageTitle; ?>">

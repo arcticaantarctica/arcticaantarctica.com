@@ -1,0 +1,33 @@
+.updates {
+  padding: 0;
+}
+
+.updates-pagination {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.updates-scroll {
+  overflow-x: auto;
+}
+
+.updates table {
+  border-collapse: collapse;
+  min-width: 700px;
+  text-align: left;
+  width: 100%;
+}
+
+.updates th,
+.updates td {
+  padding: 8px;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.updates td {
+  text-align: left;
+}
