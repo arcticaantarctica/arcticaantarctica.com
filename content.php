@@ -174,7 +174,7 @@ if ($pagePath === 'updates') {
                 <?php foreach ($pageUpdates as $index => $update): ?>
                   <tr>
                     <td><a href="<?php echo escapeHtml($siteContent['github'] . '/commit/' . $update['head_sha']); ?>" target="_blank" rel="noopener noreferrer"><?php echo escapeHtml($update['display_title']); ?></a></td>
-                    <td><time datetime="<?php echo escapeHtml($update['created_at']); ?>"><?php echo escapeHtml(gmdate('d-m-Y H:i', strtotime($update['created_at']))); ?> UTC</time></td>
+                    <td><time datetime="<?php echo escapeHtml($update['created_at']); ?>"><?php echo escapeHtml(gmdate('d-m-Y H:i', strtotime($update['created_at']))); ?></time></td>
                     <td><?php echo $totalUpdates - ($updatesPage - 1) * $updatesPerPage - $index; ?></td>
                     <td><?php echo escapeHtml(substr($update['head_sha'], 0, 7)); ?></td>
                   </tr>
