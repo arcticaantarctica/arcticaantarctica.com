@@ -1,0 +1,54 @@
+{
+  "name": "Arctica / Antarctica",
+  "description": "Arctica / Antarctica is a Norwegian polar ambient band.",
+  "logo": "/img/arctica_antarctica.svg",
+  "soundcloud": "https://soundcloud.com/mc-peko/sets/arctica-antarctica",
+  "soundcloud_embed": "https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F47853174&show_artwork=true",
+  "facebook": "https://facebook.com/arcticaantarctica",
+  "github": "https://github.com/arcticaantarctica/arcticaantarctica.com",
+  "lineup": ["Ole Peko Sørensen", "Jonas Qvale", "Jon Martens Holm"],
+  "events": [
+    {
+      "date": "2017-03-04",
+      "name": "Vinterriss",
+      "venue": "Blå Grotte",
+      "venue_url": "https://blaagrotte.no/",
+      "location": "Fredrikstad, Norway",
+      "url": "https://facebook.com/events/169508156874797",
+      "poster": {"src": "/img/events/2017_03_04_poster.png", "alt": "Vinterriss 2017 poster"},
+      "photo": {"src": "/img/band.png", "alt": "Arctica / Antarctica performing at Vinterriss"}
+    },
+    {
+      "date": "2016-10-29",
+      "name": "So Fxxking Contemporary",
+      "venue": "Hydrogenfabrikken",
+      "venue_url": "https://facebook.com/hydrogenfabrikken",
+      "location": "Fredrikstad, Norway",
+      "url": "https://facebook.com/events/194231630976522",
+      "poster": {"src": "/img/events/2016_10_29_poster.png", "alt": "So Fxxking Contemporary 2016 poster"}
+    },
+    {
+      "date": "2016-05-21",
+      "name": "FMV arr.",
+      "venue": "Cafeen, St. Crois huset",
+      "venue_url": "https://www.fredrikstad.kommune.no/tjenester/kunst-og-kultur/stcroix-huset/om-stcroix-huset/",
+      "location": "Fredrikstad, Norway",
+      "url": "https://facebook.com/events/1112022928857531",
+      "poster": {"src": "/img/events/2016_05_21_poster.png", "alt": "The Quantum Field Trip with Arctica / Antarctica poster"}
+    },
+    {
+      "date": "2015-11-07",
+      "name": "The SOUND Of Music",
+      "venue": "Blå Grotte",
+      "venue_url": "https://blaagrotte.no/",
+      "location": "Fredrikstad, Norway",
+      "url": "https://facebook.com/events/498578076969106",
+      "photo": {"src": "/img/events/2015_11_07_photo.png", "alt": "Arctica / Antarctica at The SOUND Of Music"}
+    }
+  ],
+  "links": [
+    {"name": "Arctic Council", "url": "https://arctic-council.org/"},
+    {"name": "Australian Antarctic Program", "url": "https://www.antarctica.gov.au/"},
+    {"name": "National Snow and Ice Data Center", "url": "https://nsidc.org/"}
+  ]
+}
