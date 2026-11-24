@@ -37,16 +37,15 @@ original vector artwork when it becomes available.
 
 ## Production setup
 
-The domain resolves, but the Host1 web root and SFTP destination still need to
-be verified. The GitHub Actions deployment workflow is manual-only until the
-read-only Check mode confirms access to its configured destination,
-`/home/flamenco/arcticaantarctica.com`.
+The domain and SFTP destination `/home/flamenco/arcticaantarctica.com` were
+verified with Check and a successful Full upload. Pushes to `main` deploy changed
+runtime files automatically. Manual workflow runs default to Check, which
+verifies SFTP access and the destination without uploading files.
 
 Add `SFTP_HOST`, `SFTP_USERNAME` and `SFTP_PASSWORD` as repository Actions
 secrets. Set the optional `SFTP_PORT` Actions variable if the server does not
-use port 22. Run Check before choosing Full; Check verifies SFTP access and the
-destination without uploading files. Automatic deployment on pushes remains
-disabled until the first production upload is verified.
+use port 22. Run Check before a first upload. Use Full for an initial or repair
+upload when all tracked runtime files need to be sent.
 
 ## Licence
 
