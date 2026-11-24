@@ -1,0 +1,46 @@
+# Repository-only files
+.git/**
+.github/**
+.dev/**
+.githooks/**
+.vscode/**
+tests/**
+.editorconfig
+.gitignore
+.ftpignore
+README.md
+LICENCE
+THIRD-PARTY-LICENCES
+
+# Secrets, server logs and certificate-validation files stay on the host.
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+error_log
+**/error_log
+error_log.*
+**/error_log.*
+*.log
+*.bak
+*.tmp
+.well-known/acme-challenge/**
+.well-known/pki-validation/**
+.DS_Store
+Thumbs.db
+
+# Shared deployment exclusions
+**/*.md
+**/.env*
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/error_log*
+**/*.log
+**/*.bak
+**/*.tmp
+**/.DS_Store
+**/Thumbs.db

@@ -37,9 +37,16 @@ original vector artwork when it becomes available.
 
 ## Production setup
 
-The domain's Host1 account requires sign-in. Production DNS, hosting assignment,
-and deployment have not been configured or verified. Do not upload until the
-Host1 web root and SFTP access are confirmed.
+The domain resolves, but the Host1 web root and SFTP destination still need to
+be verified. The GitHub Actions deployment workflow is manual-only until the
+read-only Check mode confirms access to its configured destination,
+`/home/flamenco/arcticaantarctica.com`.
+
+Add `SFTP_HOST`, `SFTP_USERNAME` and `SFTP_PASSWORD` as repository Actions
+secrets. Set the optional `SFTP_PORT` Actions variable if the server does not
+use port 22. Run Check before choosing Full; Check verifies SFTP access and the
+destination without uploading files. Automatic deployment on pushes remains
+disabled until the first production upload is verified.
 
 ## Licence
 
