@@ -68,9 +68,9 @@ if (($argv[1] ?? '') === '--http') {
     $previousControlPosition = strpos($html, 'id="prev-site-button"');
     $playControlPosition = strpos($html, '<button id="play-site-button" class="settings-toggle" type="button" title="Play all pages" aria-label="Play all pages" aria-pressed="false"><svg class="icons" aria-hidden="true"><use href="/icons.svg#play"></use></svg></button>');
     $nextControlPosition = strpos($html, 'id="next-site-button"');
-    $releasesPosition = strpos($html, '<li class="toc-section-start"><a href="/releases"');
+    $releasesPosition = strpos($html, '<li><a href="/releases"');
     check($homeControlPosition !== false && $previousControlPosition !== false && $playControlPosition !== false && $nextControlPosition !== false && $releasesPosition !== false
-        && $homeControlPosition < $previousControlPosition && $previousControlPosition < $playControlPosition && $playControlPosition < $nextControlPosition && $nextControlPosition < $releasesPosition, 'Place Home and page playback controls before the spaced Releases link');
+        && $homeControlPosition < $previousControlPosition && $previousControlPosition < $playControlPosition && $playControlPosition < $nextControlPosition && $nextControlPosition < $releasesPosition, 'Place Home and page playback controls before the Releases link without extra section spacing');
     $settingsPanelPosition = strpos($html, '<div id="settings-panel"');
     check($settingsPanelPosition !== false && strpos($html, 'id="play-site-button"', $settingsPanelPosition) === false, 'Keep page playback controls out of Settings');
 

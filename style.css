@@ -188,13 +188,12 @@ main > :first-child { margin-top: 0; }
 .toc-container li a[aria-current="page"] { background: var(--grey2); color: var(--color1); }
 .settings-panel .button-on { color: var(--color1); }
 .settings-panel button:disabled, .toc-container button:disabled { cursor: default; opacity: 0.5; }
-.toc-controls { align-items: center; display: flex; gap: 16px; justify-content: center; padding: 10px; }
+.toc-controls { align-items: center; display: flex; justify-content: center; padding: 10px; }
 .toc-controls .settings-toggle { color: var(--white); }
 .toc-controls .settings-toggle:hover, .site-play-controls .settings-toggle:hover { background: var(--grey2); }
 .toc-controls .settings-toggle.button-on { color: var(--color1); }
 .toc-controls a[aria-current="page"] { background: var(--grey2); color: var(--color1); }
 .site-play-controls { align-items: center; display: flex; gap: 16px; }
-.toc-section-start { margin-top: 16px; }
 .toc-close-wrap { display: flex; justify-content: center; padding: 10px 10px 24px; }
 #settings-feedback { margin: 10px; }
 body.toc-sidebar-open #toggle-menu-button, body.settings-sidebar-open #toggle-settings-panel-button { color: var(--color1); }

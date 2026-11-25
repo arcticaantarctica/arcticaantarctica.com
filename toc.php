@@ -21,7 +21,7 @@
           ['links', 'Links', 'world'],
           ['updates', 'Updates', 'github'],
         ] as [$path, $label, $icon]): ?>
-          <li<?php if ($path === 'releases'): ?> class="toc-section-start"<?php endif; ?>><a href="/<?php echo $path; ?>"<?php if ($pagePath === $path || ($pagePath === 'event' && $path === 'events')): ?> aria-current="page"<?php endif; ?>><svg class="icons" aria-hidden="true"><use href="/icons.svg#<?php echo $icon; ?>"></use></svg><?php echo $label; ?></a></li>
+          <li><a href="/<?php echo $path; ?>"<?php if ($pagePath === $path || ($pagePath === 'event' && $path === 'events')): ?> aria-current="page"<?php endif; ?>><svg class="icons" aria-hidden="true"><use href="/icons.svg#<?php echo $icon; ?>"></use></svg><?php echo $label; ?></a></li>
         <?php endforeach; ?>
       </ul>
       <div class="toc-close-wrap"><button id="toggle-menu-close-button" class="settings-toggle" type="button" title="Close" aria-label="Close menu"><svg class="icons" aria-hidden="true"><use href="/icons.svg#close"></use></svg></button></div>
