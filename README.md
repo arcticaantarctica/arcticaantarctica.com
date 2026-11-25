@@ -14,6 +14,10 @@ from the Nikon documentation in the band archive. The Events overview displays
 available photos and a calendar placeholder when no photo is available. Event
 pages display the event photo above its poster when available, with a calendar
 placeholder for missing posters.
+Event photos and placeholders use a centered 16:9 display frame capped at
+1024px. The frame crops with `object-fit: cover` without changing source files.
+It keeps 16px spacing on desktop and fills the available width without margins
+on phones. Posters retain their natural aspect ratio.
 
 ## Local preview
 
@@ -25,8 +29,11 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\local-tools\startup.p
 
 Open <http://localhost:8008>.
 
-Settings includes Play to cycle through the navigation pages, plus Prev and Next
-to move between them. Selecting a page link or pressing Escape stops Play.
+The TOC begins with Home, Previous page, Play and Next page. Selecting a page
+link or pressing Escape stops Play. Settings includes Background, off by default,
+using the existing concert photo configured in `data/site_ui.json`.
+Shared component copies `site_ui.php`, `site_ui.css` and `site_ui.js` are
+maintained from Pekosoft.
 
 Contact uses the same recipient and sending address as the Pekosoft contact
 form. PHP mail delivery and sender authorization must be verified on the

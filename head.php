@@ -30,3 +30,4 @@ $description = escapeHtml($siteContent['description']);
 <meta name="twitter:description" content="<?php echo $description; ?>">
 <meta name="twitter:image" content="<?php echo escapeHtml($socialImageUrl); ?>">
 <link rel="canonical" href="<?php echo escapeHtml($canonicalUrl); ?>">
+<?php require __DIR__ . '/site_ui.php'; ?>
