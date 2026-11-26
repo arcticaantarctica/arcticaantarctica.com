@@ -203,6 +203,8 @@ body.toc-lock, body.settings-lock { overflow: hidden; }
 }
 .home-feature { padding: 32px 16px; }
 .brand-mark { display: block; height: auto; margin: 0 auto 24px; max-width: 100%; width: 288px; }
+.invert-colors.site-background-enabled .home-feature { color: #fff; }
+.invert-colors.site-background-enabled .home-feature .brand-mark { filter: none; }
 .content-panel { margin: 16px 0; overflow-wrap: anywhere; padding: 16px; }
 .content-panel p:last-child { margin-bottom: 0; }
 .soundcloud-player { border: 0; display: block; margin: 0 auto; max-width: 480px; width: 100%; }
